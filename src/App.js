@@ -23,32 +23,24 @@ const columns = [
 function App() {
   const [list, setList] = useState([]);
 
-  // useEffect(() => {
-  //   fetch(`https://jsonplaceholder.typicode.com/users`)
-  //     .then((response) => response.json())
-  //     .then((json) => setList(json));
-  // }, []);
+  useEffect(() => {
+     fetch(`https://jsonplaceholder.typicode.com/users`)
+       .then((response) => response.json())
+       .then((json) => setList(json));
+  }, []);
 
-  const tableData = (item) => {
-    console.log(item);
-    fetch(
-      `https://jsonplaceholder.typicode.com/users?_start=${
-        item.page * item.numberPerPage
-      }&_limit=${item.numberPerPage}`
-    )
-      .then((response) => response.json())
-      .then((json) => setList(json));
+  const myRender = (item, col) =>
+  {
+      if(col.field === 'email') return (
+        <strong>{item[col.field]}</strong>
+      ); else return (
+        <span>{item[col.field]}</span>
+      );
   };
 
   return (
     <div className="App">
-      {/* <SimpleTableComponent columns={columns} list={list} /> */}
-      <ServerSimpleTableComponent
-        columns={columns}
-        list={list}
-        onGetData={tableData}
-        total={1000}
-      />
+      <SimpleTableComponent columns={columns} list={list} cellComponent={myRender}/>
     </div>
   );
 }

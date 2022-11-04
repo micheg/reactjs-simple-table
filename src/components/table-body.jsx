@@ -1,16 +1,10 @@
 import React, { useEffect } from "react";
 
-const isFunction = (x) =>
-{
-  return Object.prototype.toString.call(x) == '[object Function]';
-};
-
-const BodyTableComponent = ({ data, columnsData, formatter }) => {
+const BodyTableComponent = ({ data, columnsData, cellComponent }) => {
   useEffect(() => {
     debugger;
   }, []);
-  let format_fn = isFunction(formatter) ? formatter : (str, obj, field) => { return str; }
-
+window.$CC = cellComponent
   return (
     <tbody>
       {data?.map((item, i) => (
@@ -19,7 +13,7 @@ const BodyTableComponent = ({ data, columnsData, formatter }) => {
           {
             return (
               <td key={j}>
-                <span>format_fn({item[col.field]})</span>
+                {cellComponent(item, col)}
               </td>
             );
           })}

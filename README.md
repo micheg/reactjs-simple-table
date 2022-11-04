@@ -1,4 +1,4 @@
-## React Simple Table
+# React Simple Table
 
 A simple and reusable table for React ([Demo](Https://Codesandbox.Io/S/Reactjs-Simple-Table-Pokzv "Demo"))
 
@@ -9,8 +9,42 @@ Server side table for React ([Demo](https://codesandbox.io/s/reactjs-simple-tabl
 The package can be installed via NPM:
 
 ```
-npm i reactjs-simple-table
+npm i micheg/reactjs-simple-table
 ```
+
+### Note
+
+Fork of SinaMAlizadeh/reactjs-simple-table but with but with the possibility of having a customized rendering element.
+ex:
+
+```js
+function App() {
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+     fetch(`https://jsonplaceholder.typicode.com/users`)
+       .then((response) => response.json())
+       .then((json) => setList(json));
+  }, []);
+
+  const myRender = (item, col) =>
+  {
+      if(col.field === 'email') return (
+        <strong>{item[col.field]}</strong>
+      ); else return (
+        <span>{item[col.field]}</span>
+      );
+  };
+
+  return (
+    <div className="App">
+      <SimpleTableComponent columns={columns} list={list} cellComponent={myRender}/>
+    </div>
+  );
+}
+export default App;
+```
+
 
 ## Usage
 

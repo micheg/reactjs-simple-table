@@ -1,6 +1,6 @@
 {
   "name": "reactjs-simple-table",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Reactjs simple table for showing list of data with sorting and pagation",
   "private": false,
   "babel": {

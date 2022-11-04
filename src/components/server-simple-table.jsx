@@ -13,6 +13,7 @@ const ServerSimpleTableComponent = ({
   numberPageOfText,
   tableClassName,
   onGetData,
+  cellComponent
 }) => {
   const [data, setData] = useState([]);
   const [columnsData, setColumnsData] = useState([]);
@@ -22,6 +23,16 @@ const ServerSimpleTableComponent = ({
   const [page, setPage] = useState(1);
   const [numberPerPage, setNumberPerPage] = useState(10);
   const [numberOfPage, setNumberOfPage] = useState(0);
+
+  const defaultCellComponent = (item, col) =>
+  {
+      return (
+        <span>{item[col.field]}</span>
+      );
+  };
+
+  let render = (typeof cellComponent !== 'undefined') ? cellComponent : defaultCellComponent;
+
 
   useEffect(() => {
     debugger;
@@ -105,7 +116,7 @@ const ServerSimpleTableComponent = ({
             order={order}
             sort={sort}
           />
-          <BodyTableComponent data={data} columnsData={columnsData} />
+          <BodyTableComponent data={data} columnsData={columnsData} cellComponent={render}/>
         </table>
       </div>
       <FooterTableComponent
