@@ -4,7 +4,7 @@ import BodyTableComponent from "./table-body";
 import FooterTableComponent from "./table-footer";
 import HeaderTableComponent from "./table-header";
 
-const SimpleTableComponent = ({
+const ServerSimpleTableComponent = ({
   columns,
   list,
   total,
@@ -12,6 +12,7 @@ const SimpleTableComponent = ({
   isRtl = false,
   numberPageOfText,
   tableClassName,
+  onGetData,
   cellComponent
 }) => {
   const [data, setData] = useState([]);
@@ -29,16 +30,32 @@ const SimpleTableComponent = ({
 
   let render = typeof cellComponent !== 'undefined' ? cellComponent : defaultCellComponent;
   useEffect(() => {
+    debugger;
     setColumnsData(columns);
-  }, [columns]);
+    setTotalTable(total);
+  }, []);
   useEffect(() => {
-    setTotalTable(total ? total : list?.length);
+    debugger;
     setNumberPerPage(numberPerPageTable ? numberPerPageTable : 10);
-  }, [list, numberPerPageTable, total]);
-  useEffect(() => {
     setNumberOfPage(Math.ceil(totalTable / numberPerPage));
-    setData(list?.slice((page - 1) * numberPerPage, page * numberPerPage));
-  }, [totalTable, numberPerPage, page, list]);
+  }, [totalTable]);
+  useEffect(() => {
+    debugger;
+    setNumberPerPage(numberPerPage ? numberPerPage : 10);
+    setNumberOfPage(Math.ceil(totalTable / numberPerPage));
+  }, [numberPerPage]);
+  useEffect(() => {
+    setData(list);
+  }, [list]);
+  useEffect(() => {
+    onGetData({
+      page: page - 1,
+      numberPerPage: numberPerPage,
+      order: order == "descending" ? "ascending" : "descending",
+      orderby: orderby,
+      data: data
+    });
+  }, [page, numberPerPage]);
 
   const sort = item => {
     setOrderBy(item);
@@ -70,9 +87,7 @@ const SimpleTableComponent = ({
   };
 
   const handleChange = e => {
-    debugger;
-    let x = e.target.value;
-    setNumberPerPage(x);
+    setNumberPerPage(e.target.value);
     setPage(1);
   };
 
@@ -103,4 +118,4 @@ const SimpleTableComponent = ({
   }));
 };
 
-export default SimpleTableComponent;
+export default ServerSimpleTableComponent;
