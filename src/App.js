@@ -32,6 +32,8 @@ function App() {
   const myRender = (item, col) =>
   {
       if(col.field === 'email') return (
+        <a href={`mailto:${item[col.field]}`}>{item[col.field]}</a>
+      ); else if(col.field === 'name') return (
         <strong>{item[col.field]}</strong>
       ); else return (
         <span>{item[col.field]}</span>

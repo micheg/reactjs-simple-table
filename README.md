@@ -15,6 +15,7 @@ npm i micheg/reactjs-simple-table
 ### Note
 
 Fork of SinaMAlizadeh/reactjs-simple-table but with but with the possibility of having a customized rendering element.
+useful for links, strong, etc.
 ex:
 
 ```js
@@ -30,11 +31,14 @@ function App() {
   const myRender = (item, col) =>
   {
       if(col.field === 'email') return (
+        <a href={`mailto:${item[col.field]}`}>{item[col.field]}</a>
+      ); else if(col.field === 'name') return (
         <strong>{item[col.field]}</strong>
       ); else return (
         <span>{item[col.field]}</span>
       );
   };
+
 
   return (
     <div className="App">
