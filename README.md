@@ -1,4 +1,4 @@
-# React Simple Table
+## React Simple Table
 
 A simple and reusable table for React ([Demo](Https://Codesandbox.Io/S/Reactjs-Simple-Table-Pokzv "Demo"))
 
