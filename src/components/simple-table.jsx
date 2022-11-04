@@ -12,6 +12,7 @@ const SimpleTableComponent = ({
   isRtl = false,
   numberPageOfText,
   tableClassName,
+  formatter
 }) => {
   const [data, setData] = useState([]);
   const [columnsData, setColumnsData] = useState([]);
@@ -89,7 +90,7 @@ const SimpleTableComponent = ({
             order={order}
             sort={sort}
           />
-          <BodyTableComponent data={data} columnsData={columnsData} />
+          <BodyTableComponent data={data} columnsData={columnsData} formatter={formatter}/>
         </table>
       </div>
       <FooterTableComponent
