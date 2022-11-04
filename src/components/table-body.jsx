@@ -1,10 +1,6 @@
 import React, { useEffect } from "react";
 
 const BodyTableComponent = ({ data, columnsData, cellComponent }) => {
-  useEffect(() => {
-    debugger;
-  }, []);
-window.$CC = cellComponent
   return (
     <tbody>
       {data?.map((item, i) => (

@@ -35,19 +35,16 @@ const ServerSimpleTableComponent = ({
 
 
   useEffect(() => {
-    debugger;
     setColumnsData(columns);
     setTotalTable(total);
   }, []);
 
   useEffect(() => {
-    debugger;
     setNumberPerPage(numberPerPageTable ? numberPerPageTable : 10);
     setNumberOfPage(Math.ceil(totalTable / numberPerPage));
   }, [totalTable]);
 
   useEffect(() => {
-    debugger;
     setNumberPerPage(numberPerPage ? numberPerPage : 10);
     setNumberOfPage(Math.ceil(totalTable / numberPerPage));
   }, [numberPerPage]);

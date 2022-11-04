@@ -70,7 +70,6 @@ const SimpleTableComponent = ({
   };
 
   const handleChange = e => {
-    debugger;
     let x = e.target.value;
     setNumberPerPage(x);
     setPage(1);
